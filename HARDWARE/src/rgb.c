@@ -1,7 +1,7 @@
 #include "rgb.h"
 
 /**
-  * @brief  RGBï¿½Ü½Å³ï¿½Ê¼ï¿½ï¿½
+  * @brief  RGB???????
   * @param  void
   * @retval void
 	* @note 
@@ -25,7 +25,7 @@ void RGB_Init(void)
 }
 
 /**
-  * @brief  RGBï¿½ï¿½ï¿½Ý½ï¿½ï¿½ï¿½
+  * @brief  RGB???????
   * @param  u8 data
   * @retval void
 	* @note 
@@ -34,9 +34,9 @@ void RGB_Transferdata(u8 data)
 {
   for(u8 i=0;i<8;i++)
 	{	
-		RGB_CLK_L;//ä¸‹æ‹‰æ—¶é’Ÿçº¿	
+		RGB_CLK_L;//ÏÂÀ­Ê±ÖÓÏß	
 		delay_us(20);
-		if((data & 0x80) >> i)
+		if(data & (0x80 >> i))
 		{
 			RGB_DATA_H;
 		}
@@ -52,7 +52,7 @@ void RGB_Transferdata(u8 data)
 
 
 /**
-  * @brief  RGBï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+  * @brief  RGB????????
   * @param  u8 data
   * @retval void
 	* @note 
@@ -64,7 +64,7 @@ void RGB_SendData(u8 r,u8 g,u8 b)
 	RGB_Transferdata(0x00);
 	RGB_Transferdata(0x00);
 	
-	//ï¿½ï¿½Ö¾Î»ï¿½ï¿½Ð£ï¿½ï¿½Î»
+	//???¦Ë??§µ??¦Ë
 	u8 flag_data = (b&0xC0) | (~(((b&0xC0) >> 2) | ((g&0xC0) >> 4) | ((r&0xC0) >>6)));
 	
 	RGB_Transferdata(flag_data);

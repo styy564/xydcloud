@@ -190,25 +190,25 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             currentDataPoint.valueR = dataPointPtr->valueR;
             //GIZWITS_LOG("Evt:EVENT_R %d\n",currentDataPoint.valueR);
             //user handle
-						oled_ref = 1;
-						rgb.r = currentDataPoint.valueR;
-						RGB_SendData(currentDataPoint.valueR,currentDataPoint.valueG,currentDataPoint.valueB);
+			oled_ref = 1;
+			rgb.r = currentDataPoint.valueR;
+			RGB_SendData((uint8_t)currentDataPoint.valueR,(uint8_t)currentDataPoint.valueG,(uint8_t)currentDataPoint.valueB);
             break;
         case EVENT_G:
             currentDataPoint.valueG = dataPointPtr->valueG;
            // GIZWITS_LOG("Evt:EVENT_G %d\n",currentDataPoint.valueG);
             //user handle
-						oled_ref = 1;
-						rgb.g = currentDataPoint.valueG;
-						RGB_SendData(currentDataPoint.valueR,currentDataPoint.valueG,currentDataPoint.valueB);
+			oled_ref = 1;
+			rgb.g = currentDataPoint.valueG;
+			RGB_SendData((uint8_t)currentDataPoint.valueR,(uint8_t)currentDataPoint.valueG,(uint8_t)currentDataPoint.valueB);
             break;
         case EVENT_B:
             currentDataPoint.valueB = dataPointPtr->valueB;
             //GIZWITS_LOG("Evt:EVENT_B %d\n",currentDataPoint.valueB);
             //user handle
-						oled_ref = 1;
-						rgb.b = currentDataPoint.valueB;
-						RGB_SendData(currentDataPoint.valueR,currentDataPoint.valueG,currentDataPoint.valueB);
+			oled_ref = 1;
+			rgb.b = currentDataPoint.valueB;
+			RGB_SendData((uint8_t)currentDataPoint.valueR,(uint8_t)currentDataPoint.valueG,(uint8_t)currentDataPoint.valueB);
             break;
 
 
@@ -278,11 +278,12 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
 */
 void userHandle(void)
 {
- /*
-    currentDataPoint.valuetemp = ;//Add Sensor Data Collection
-    currentDataPoint.valuehumi = ;//Add Sensor Data Collection
-
-    */
+    //读取温湿度传感器数据
+    DHT11_Read();
+    
+    //将传感器数据赋值给当前数据点，用于上报云端
+    currentDataPoint.valuetemp = dht_temp;//温度数据
+    currentDataPoint.valuehumi = dht_humi;//湿度数据
     
 }
 

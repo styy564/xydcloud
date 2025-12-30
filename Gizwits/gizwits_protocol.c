@@ -13,7 +13,7 @@
 *               www.gizwits.com
 *
 ***********************************************************/
-#include "ringBuffer.h"
+#include "ringbuffer.h"
 #include "gizwits_product.h"
 #include "dataPointTools.h"
 
@@ -1541,7 +1541,7 @@ int32_t gizwitsHandle(dataPoint_t *currentData)
                 break;
             case CMD_ISSUED_P0:
                 GIZWITS_LOG("flag %x %x \n", recvHead->flags[0], recvHead->flags[1]);
-                //offset = 1;
+                offset = 1;
                
                 if(0 == gizProtocolIssuedProcess(didPtr, gizwitsProtocol.protocolBuf+sizeof(protocolHead_t)+offset, protocolLen-(sizeof(protocolHead_t)+offset+1), ackData, &ackLen))
                 {

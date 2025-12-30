@@ -344,7 +344,7 @@ void Task3(void *ptr)
 			{
 				ui_flag = 1;
 				OLED_Clear(0);
-				OLED_DisplayStr(40,0,(u8*)"云家居");
+				OLED_DisplayStr(8,0,(u8*)"第九小组云家居");
 				OLED_DisplayPic(8,2,32,4,(u8*)homepage[menu==4?30:menu-9]);
 				OLED_DisplayPic(48,2,32,4,(u8*)homepage[menu]);
 				OLED_DisplayPic(88,2,32,4,(u8*)homepage[menu==34?0:menu+1]);

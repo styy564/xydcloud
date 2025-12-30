@@ -364,7 +364,7 @@ I (.\HARDWARE\inc\step_motor.h)(0x69534E34)
 I (.\HARDWARE\inc\remote.h)(0x69534E34)
 I (.\HARDWARE\inc\wifi.h)(0x69534E34)
 I (.\USER\inc\tim1.h)(0x69534E34)
-F (.\USER\src\app.c)(0x69534E34)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\HARDWARE\inc -I .\USER\inc -I .\STM32F10x_StdPeriph_Driver\inc -I .\Gizwits -I .\Utils -I .\FreeRTOS\include -I .\FreeRTOS\port-IC:\Users\styy564\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="539" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\app.o --omf_browse .\objects\app.crf --depend .\objects\app.d)
+F (.\USER\src\app.c)(0x6953998C)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\HARDWARE\inc -I .\USER\inc -I .\STM32F10x_StdPeriph_Driver\inc -I .\Gizwits -I .\Utils -I .\FreeRTOS\include -I .\FreeRTOS\port-IC:\Users\styy564\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="539" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\app.o --omf_browse .\objects\app.crf --depend .\objects\app.d)
 I (.\USER\inc\app.h)(0x69534E34)
 I (.\USER\inc\main.h)(0x69534E34)
 I (.\CMSIS\stm32f10x.h)(0x69534E34)
@@ -431,7 +431,7 @@ I (.\HARDWARE\inc\wifi.h)(0x69534E34)
 I (.\USER\inc\tim1.h)(0x69534E34)
 I (.\USER\inc\tim4.h)(0x69534E34)
 I (.\HARDWARE\inc\default.h)(0x69534E34)
-F (.\HARDWARE\inc\pic.h)(0x69534E34)()
+F (.\HARDWARE\inc\pic.h)(0x69539932)()
 F (.\HARDWARE\src\led.c)(0x69534E34)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\HARDWARE\inc -I .\USER\inc -I .\STM32F10x_StdPeriph_Driver\inc -I .\Gizwits -I .\Utils -I .\FreeRTOS\include -I .\FreeRTOS\port-IC:\Users\styy564\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="539" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\led.o --omf_browse .\objects\led.crf --depend .\objects\led.d)
 I (.\HARDWARE\inc\led.h)(0x69534E34)
 I (.\USER\inc\main.h)(0x69534E34)
@@ -894,7 +894,7 @@ I (.\HARDWARE\inc\remote.h)(0x69534E34)
 I (.\HARDWARE\inc\wifi.h)(0x69534E34)
 I (.\USER\inc\tim1.h)(0x69534E34)
 I (.\USER\inc\tim4.h)(0x69534E34)
-I (.\HARDWARE\inc\pic.h)(0x69534E34)
+I (.\HARDWARE\inc\pic.h)(0x69539932)
 F (.\HARDWARE\src\step_motor.c)(0x69534E34)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\HARDWARE\inc -I .\USER\inc -I .\STM32F10x_StdPeriph_Driver\inc -I .\Gizwits -I .\Utils -I .\FreeRTOS\include -I .\FreeRTOS\port-IC:\Users\styy564\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="539" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\step_motor.o --omf_browse .\objects\step_motor.crf --depend .\objects\step_motor.d)
 I (.\HARDWARE\inc\step_motor.h)(0x69534E34)
 I (.\USER\inc\main.h)(0x69534E34)
@@ -1761,7 +1761,7 @@ I (.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_spi.h)(0x69534E34)
 I (.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h)(0x69534E34)
 I (.\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x69534E34)
 I (.\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x69534E34)
-F (.\Gizwits\gizwits_product.c)(0x69534E34)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\HARDWARE\inc -I .\USER\inc -I .\STM32F10x_StdPeriph_Driver\inc -I .\Gizwits -I .\Utils -I .\FreeRTOS\include -I .\FreeRTOS\port-IC:\Users\styy564\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="539" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\gizwits_product.o --omf_browse .\objects\gizwits_product.crf --depend .\objects\gizwits_product.d)
+F (.\Gizwits\gizwits_product.c)(0x69538F00)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\HARDWARE\inc -I .\USER\inc -I .\STM32F10x_StdPeriph_Driver\inc -I .\Gizwits -I .\Utils -I .\FreeRTOS\include -I .\FreeRTOS\port-IC:\Users\styy564\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="539" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\gizwits_product.o --omf_browse .\objects\gizwits_product.crf --depend .\objects\gizwits_product.d)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\string.h)(0x5E8E3CC2)
 I (Gizwits\gizwits_product.h)(0x69534E34)
@@ -1827,7 +1827,7 @@ I (.\HARDWARE\inc\remote.h)(0x69534E34)
 I (.\HARDWARE\inc\wifi.h)(0x69534E34)
 I (.\USER\inc\tim1.h)(0x69534E34)
 I (.\USER\inc\tim4.h)(0x69534E34)
-F (.\Gizwits\gizwits_protocol.c)(0x69534E34)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\HARDWARE\inc -I .\USER\inc -I .\STM32F10x_StdPeriph_Driver\inc -I .\Gizwits -I .\Utils -I .\FreeRTOS\include -I .\FreeRTOS\port-IC:\Users\styy564\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="539" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\gizwits_protocol.o --omf_browse .\objects\gizwits_protocol.crf --depend .\objects\gizwits_protocol.d)
+F (.\Gizwits\gizwits_protocol.c)(0x69539324)(--c99 -c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I .\CMSIS -I .\HARDWARE\inc -I .\USER\inc -I .\STM32F10x_StdPeriph_Driver\inc -I .\Gizwits -I .\Utils -I .\FreeRTOS\include -I .\FreeRTOS\port-IC:\Users\styy564\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.4.1\Device\Include-D__UVISION_VERSION="539" -DSTM32F10X_MD -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\gizwits_protocol.o --omf_browse .\objects\gizwits_protocol.crf --depend .\objects\gizwits_protocol.d)
 I (.\Utils\ringBuffer.h)(0x69534E34)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdint.h)(0x5E8E3CC2)
 I (C:\Keil_v5\ARM\ARM_Compiler_5.06u7\include\stdio.h)(0x5E8E3CC2)

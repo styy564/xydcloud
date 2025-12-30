@@ -286,6 +286,7 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             currentDataPoint.valuemotor = dataPointPtr->valuemotor;
             GIZWITS_LOG("Evt:EVENT_motor %d\n",currentDataPoint.valuemotor);
             motor_speed = currentDataPoint.valuemotor; // 同步更新motor_speed变量，确保UI显示正确
+            ui_flag = 0; // 设置ui_flag为0，强制页面刷新，更新百分比显示和进度条
             if(currentDataPoint.valuemotor > 0)
             {
                 Morot_Up(currentDataPoint.valuemotor);

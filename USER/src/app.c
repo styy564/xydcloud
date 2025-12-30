@@ -339,6 +339,7 @@ void Task3(void *ptr)
 	printf("进入3\r\n");
 	while(1)
 	{
+		Morot_Up(200*motor_speed);//电机启动，无论当前页面是什么都会执行
 		if(page_flag == 0)//**********************    主页面     ***************************
 		{
 			if(ui_flag == 0)//发生了页面切换
@@ -446,7 +447,6 @@ void Task3(void *ptr)
 				OLED_DisplayPic(0,0,16,2,(u8*)other[2]);//退出图标
 				OLED_DisplayPic(20,0,16,2,(u8*)other[0]);//箭头，指向选中目标
 			}
-			Morot_Up(200*motor_speed);//电机启动
 			if(motor_speed != 0)//风扇动图
 				{
 					static u8 fan_frame = 0;

@@ -97,6 +97,7 @@ Section Cross References
     app.o(i.Task2) refers to remote.o(.data) for remote_key
     app.o(i.Task2) refers to app.o(.data) for page_flag
     app.o(i.Task3) refers to printfa.o(i.__0printf) for __2printf
+    app.o(i.Task3) refers to motor.o(i.Morot_Up) for Morot_Up
     app.o(i.Task3) refers to oled.o(i.OLED_Clear) for OLED_Clear
     app.o(i.Task3) refers to oled.o(i.OLED_DisplayStr) for OLED_DisplayStr
     app.o(i.Task3) refers to oled.o(i.OLED_DisplayPic) for OLED_DisplayPic
@@ -104,8 +105,7 @@ Section Cross References
     app.o(i.Task3) refers to tasks.o(i.vTaskDelay) for vTaskDelay
     app.o(i.Task3) refers to delay.o(i.delay_ms) for delay_ms
     app.o(i.Task3) refers to stm32f10x_gpio.o(i.GPIO_ReadOutputDataBit) for GPIO_ReadOutputDataBit
-    app.o(i.Task3) refers to motor.o(i.Morot_Up) for Morot_Up
-    app.o(i.Task3) refers to app.o(.data) for page_flag
+    app.o(i.Task3) refers to app.o(.data) for motor_speed
     app.o(i.Task3) refers to app.o(.constdata) for homepage
     app.o(i.Task3) refers to gizwits_product.o(.bss) for ntp_time
     app.o(i.Task3) refers to app.o(.bss) for str

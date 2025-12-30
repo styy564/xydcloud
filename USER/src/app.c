@@ -85,7 +85,7 @@ void Task1(void *ptr)
 			}
 			else if(page_flag == 4)//*********风扇减速********
 			{
-				if(--motor_speed > 5) motor_speed = 0;
+				if(motor_speed > 0) motor_speed--;
 				currentDataPoint.valuemotor = motor_speed;//上报云端
 				ui_flag = 0;
 			}
@@ -354,13 +354,13 @@ void Task3(void *ptr)
 			//根据选中图标功能，显示相应文字
 			switch(menu)
 			{
-				case 4:	OLED_DisplayStr(48,6,(u8*)"时间");	break;
-				case 9:	OLED_DisplayStr(40,6,(u8*)"温湿度");break;
-				case 14:OLED_DisplayStr(52,6,(u8*)"LED");		break;
-				case 19:OLED_DisplayStr(48,6,(u8*)"风扇");	break;
-				case 24:OLED_DisplayStr(52,6,(u8*)"RGB");		break;
-				case 29:OLED_DisplayStr(48,6,(u8*)"窗帘");	break;
-				case 34:OLED_DisplayStr(48,6,(u8*)"充电");	break;
+				case 4:	OLED_DisplayStr(32,6,(u8*)"  时间  ");	break;
+				case 9:	OLED_DisplayStr(24,6,(u8*)"  温湿度  ");break;
+				case 14:OLED_DisplayStr(36,6,(u8*)"  LED  ");		break;
+				case 19:OLED_DisplayStr(32,6,(u8*)"  风扇  ");break;
+				case 24:OLED_DisplayStr(36,6,(u8*)"  RGB  ");		break;
+				case 29:OLED_DisplayStr(32,6,(u8*)"  窗帘  ");break;
+				case 34:OLED_DisplayStr(32,6,(u8*)"  充电  ");break;
 			}
 		}
 		else if(page_flag == 1)//*****************    时间页面     *************************
@@ -369,7 +369,7 @@ void Task3(void *ptr)
 				{
 					ui_flag = 1;
 					OLED_Clear(0);
-					OLED_DisplayStr(40,0,(u8*)"时间");
+					OLED_DisplayStr(36,0,(u8*)"  时间  ");
 					OLED_DisplayPic(0,0,16,2,(u8*)other[2]);//退出图标
 					OLED_DisplayPic(20,0,16,2,(u8*)other[0]);//箭头，指向选中目标
 				}
@@ -389,8 +389,8 @@ void Task3(void *ptr)
 					OLED_DisplayStr(32, 4, str);
 				} else {
 					// Display default time if data is invalid
-					OLED_DisplayStr(24, 2, (u8*)"2023-01-01      ");
-					OLED_DisplayStr(32, 4, (u8*)"00:00:00        ");
+					OLED_DisplayStr(24, 2, (u8*)"1949-10-01      ");
+					OLED_DisplayStr(32, 4, (u8*)"08:00:00        ");
 				}
 				
 				// Short delay to prevent blocking
@@ -403,7 +403,7 @@ void Task3(void *ptr)
 				ui_flag = 1;
 				OLED_Clear(0);
 				delay_ms(10); // 增加延迟确保清屏完成
-				OLED_DisplayStr(44,0,(u8*)"DHT11");
+				OLED_DisplayStr(40,0,(u8*)"  DHT11  ");
 				OLED_DisplayPic(0,0,16,2,(u8*)other[2]);//退出图标
 				OLED_DisplayPic(20,0,16,2,(u8*)other[0]);//箭头，指向选中目标
 				
@@ -420,7 +420,7 @@ void Task3(void *ptr)
 				ui_flag = 1;
 				OLED_Clear(0);
 				delay_ms(10); // 增加延迟确保清屏完成
-				OLED_DisplayStr(52,0,(u8*)"LED");
+				OLED_DisplayStr(48,0,(u8*)"  LED  ");
 				OLED_DisplayStr(10,2,(u8*)"LED1");
 				OLED_DisplayStr(10,4,(u8*)"LED2");
 				OLED_DisplayStr(10,6,(u8*)"LED3");
@@ -438,7 +438,7 @@ void Task3(void *ptr)
 			{
 				ui_flag = 1;
 				OLED_Clear(0);
-				OLED_DisplayStr(48,0,(u8*)"风扇");
+				OLED_DisplayStr(44,0,(u8*)"  风扇  ");
 				
 				OLED_DisplayPic(72,3,48,2,(u8*)motor[motor_speed]);
 				sprintf((char*)str,"%d%%  ",motor_speed*20);//转速百分比
@@ -463,7 +463,7 @@ void Task3(void *ptr)
 				ui_flag = 1;
 				oled_ref = 1;
 				OLED_Clear(0);
-				OLED_DisplayStr(52,0,(u8*)"RGB");
+				OLED_DisplayStr(48,0,(u8*)"  RGB  ");
 				OLED_DisplayStr(24,2,(u8*)"R");
 				OLED_DisplayStr(24,4,(u8*)"G");
 				OLED_DisplayStr(24,6,(u8*)"B");
@@ -538,7 +538,7 @@ void Task3(void *ptr)
 			{
 				ui_flag = 1;
 				OLED_Clear(0);
-				OLED_DisplayStr(48,0,(u8*)"窗帘");
+				OLED_DisplayStr(44,0,(u8*)"  窗帘  ");
 				OLED_DisplayPic(0,0,16,2,(u8*)other[2]);//退出图标
 				OLED_DisplayPic(20,0,16,2,(u8*)other[0]);//箭头，指向选中目标
 				if(step_flag) OLED_DisplayPic(32,3,64,4,(u8*)step[0]);//打开
@@ -574,7 +574,7 @@ void Task3(void *ptr)
 			{
 				ui_flag = 1;
 				OLED_Clear(0);
-				OLED_DisplayStr(48,0,(u8*)"充电");
+				OLED_DisplayStr(44,0,(u8*)"  充电  ");
 				OLED_DisplayPic(0,0,16,2,(u8*)other[2]);//退出图标
 				OLED_DisplayPic(20,0,16,2,(u8*)other[0]);//箭头，指向选中目标
 			}

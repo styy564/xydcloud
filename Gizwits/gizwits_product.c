@@ -284,6 +284,9 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
         case EVENT_motor:
             currentDataPoint.valuemotor = dataPointPtr->valuemotor;
             GIZWITS_LOG("Evt:EVENT_motor %d\n",currentDataPoint.valuemotor);
+            // Update the global motor_speed variable to synchronize with cloud settings
+            extern u8 motor_speed;
+            motor_speed = currentDataPoint.valuemotor;
             if(currentDataPoint.valuemotor > 0)
             {
                 Morot_Up(currentDataPoint.valuemotor);

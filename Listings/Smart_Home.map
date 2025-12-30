@@ -2234,70 +2234,70 @@ Image Symbol Table
     .data                                    0x2000005a   Section       20  stm32f10x_rcc.o(.data)
     APBAHBPrescTable                         0x2000005a   Data          16  stm32f10x_rcc.o(.data)
     ADCPrescTable                            0x2000006a   Data           4  stm32f10x_rcc.o(.data)
-    .data                                    0x20000070   Section        8  gizwits_product.o(.data)
+    .data                                    0x20000070   Section        9  gizwits_product.o(.data)
     timerMsCount                             0x20000074   Data           4  gizwits_product.o(.data)
-    .data                                    0x20000078   Section       16  gizwits_protocol.o(.data)
-    lastReportTime                           0x20000078   Data           4  gizwits_protocol.o(.data)
-    lastRepTime                              0x2000007c   Data           4  gizwits_protocol.o(.data)
-    protocolFlag                             0x20000080   Data           1  gizwits_protocol.o(.data)
-    protocolCount                            0x20000082   Data           2  gizwits_protocol.o(.data)
-    lastData                                 0x20000084   Data           1  gizwits_protocol.o(.data)
-    debugCount                               0x20000085   Data           1  gizwits_protocol.o(.data)
-    lastStatus                               0x20000086   Data           2  gizwits_protocol.o(.data)
-    .data                                    0x20000088   Section       32  heap_4.o(.data)
-    xStart                                   0x20000088   Data           8  heap_4.o(.data)
-    pxEnd                                    0x20000090   Data           4  heap_4.o(.data)
-    xFreeBytesRemaining                      0x20000094   Data           4  heap_4.o(.data)
-    xMinimumEverFreeBytesRemaining           0x20000098   Data           4  heap_4.o(.data)
-    xNumberOfSuccessfulAllocations           0x2000009c   Data           4  heap_4.o(.data)
-    xNumberOfSuccessfulFrees                 0x200000a0   Data           4  heap_4.o(.data)
-    xBlockAllocatedBit                       0x200000a4   Data           4  heap_4.o(.data)
-    .data                                    0x200000a8   Section       16  port.o(.data)
-    uxCriticalNesting                        0x200000a8   Data           4  port.o(.data)
-    ulTimerCountsForOneTick                  0x200000ac   Data           4  port.o(.data)
-    xMaximumPossibleSuppressedTicks          0x200000b0   Data           4  port.o(.data)
-    ulStoppedTimerCompensation               0x200000b4   Data           4  port.o(.data)
-    .data                                    0x200000b8   Section       60  tasks.o(.data)
-    pxDelayedTaskList                        0x200000bc   Data           4  tasks.o(.data)
-    pxOverflowDelayedTaskList                0x200000c0   Data           4  tasks.o(.data)
-    uxDeletedTasksWaitingCleanUp             0x200000c4   Data           4  tasks.o(.data)
-    uxCurrentNumberOfTasks                   0x200000c8   Data           4  tasks.o(.data)
-    xTickCount                               0x200000cc   Data           4  tasks.o(.data)
-    uxTopReadyPriority                       0x200000d0   Data           4  tasks.o(.data)
-    xSchedulerRunning                        0x200000d4   Data           4  tasks.o(.data)
-    xPendedTicks                             0x200000d8   Data           4  tasks.o(.data)
-    xYieldPending                            0x200000dc   Data           4  tasks.o(.data)
-    xNumOfOverflows                          0x200000e0   Data           4  tasks.o(.data)
-    uxTaskNumber                             0x200000e4   Data           4  tasks.o(.data)
-    xNextTaskUnblockTime                     0x200000e8   Data           4  tasks.o(.data)
-    xIdleTaskHandle                          0x200000ec   Data           4  tasks.o(.data)
-    uxSchedulerSuspended                     0x200000f0   Data           4  tasks.o(.data)
-    .data                                    0x200000f4   Section       20  timers.o(.data)
-    pxCurrentTimerList                       0x200000f4   Data           4  timers.o(.data)
-    pxOverflowTimerList                      0x200000f8   Data           4  timers.o(.data)
-    xTimerQueue                              0x200000fc   Data           4  timers.o(.data)
-    xTimerTaskHandle                         0x20000100   Data           4  timers.o(.data)
-    xLastTime                                0x20000104   Data           4  timers.o(.data)
-    .data                                    0x20000108   Section        4  stdout.o(.data)
-    .data                                    0x2000010c   Section        4  mvars.o(.data)
-    .bss                                     0x20000110   Section      102  usart1.o(.bss)
-    .bss                                     0x20000176   Section       20  app.o(.bss)
-    .bss                                     0x2000018a   Section       29  gizwits_product.o(.bss)
-    .bss                                     0x200001a8   Section      604  gizwits_protocol.o(.bss)
-    rbBuf                                    0x2000038c   Data         120  gizwits_protocol.o(.bss)
-    .bss                                     0x20000404   Section    17408  heap_4.o(.bss)
-    ucHeap                                   0x20000404   Data       17408  heap_4.o(.bss)
-    .bss                                     0x20004804   Section       80  queue.o(.bss)
-    .bss                                     0x20004854   Section      200  tasks.o(.bss)
-    pxReadyTasksLists                        0x20004854   Data         100  tasks.o(.bss)
-    xDelayedTaskList1                        0x200048b8   Data          20  tasks.o(.bss)
-    xDelayedTaskList2                        0x200048cc   Data          20  tasks.o(.bss)
-    xPendingReadyList                        0x200048e0   Data          20  tasks.o(.bss)
-    xTasksWaitingTermination                 0x200048f4   Data          20  tasks.o(.bss)
-    xSuspendedTaskList                       0x20004908   Data          20  tasks.o(.bss)
-    .bss                                     0x2000491c   Section       40  timers.o(.bss)
-    xActiveTimerList1                        0x2000491c   Data          20  timers.o(.bss)
-    xActiveTimerList2                        0x20004930   Data          20  timers.o(.bss)
+    .data                                    0x2000007c   Section       16  gizwits_protocol.o(.data)
+    lastReportTime                           0x2000007c   Data           4  gizwits_protocol.o(.data)
+    lastRepTime                              0x20000080   Data           4  gizwits_protocol.o(.data)
+    protocolFlag                             0x20000084   Data           1  gizwits_protocol.o(.data)
+    protocolCount                            0x20000086   Data           2  gizwits_protocol.o(.data)
+    lastData                                 0x20000088   Data           1  gizwits_protocol.o(.data)
+    debugCount                               0x20000089   Data           1  gizwits_protocol.o(.data)
+    lastStatus                               0x2000008a   Data           2  gizwits_protocol.o(.data)
+    .data                                    0x2000008c   Section       32  heap_4.o(.data)
+    xStart                                   0x2000008c   Data           8  heap_4.o(.data)
+    pxEnd                                    0x20000094   Data           4  heap_4.o(.data)
+    xFreeBytesRemaining                      0x20000098   Data           4  heap_4.o(.data)
+    xMinimumEverFreeBytesRemaining           0x2000009c   Data           4  heap_4.o(.data)
+    xNumberOfSuccessfulAllocations           0x200000a0   Data           4  heap_4.o(.data)
+    xNumberOfSuccessfulFrees                 0x200000a4   Data           4  heap_4.o(.data)
+    xBlockAllocatedBit                       0x200000a8   Data           4  heap_4.o(.data)
+    .data                                    0x200000ac   Section       16  port.o(.data)
+    uxCriticalNesting                        0x200000ac   Data           4  port.o(.data)
+    ulTimerCountsForOneTick                  0x200000b0   Data           4  port.o(.data)
+    xMaximumPossibleSuppressedTicks          0x200000b4   Data           4  port.o(.data)
+    ulStoppedTimerCompensation               0x200000b8   Data           4  port.o(.data)
+    .data                                    0x200000bc   Section       60  tasks.o(.data)
+    pxDelayedTaskList                        0x200000c0   Data           4  tasks.o(.data)
+    pxOverflowDelayedTaskList                0x200000c4   Data           4  tasks.o(.data)
+    uxDeletedTasksWaitingCleanUp             0x200000c8   Data           4  tasks.o(.data)
+    uxCurrentNumberOfTasks                   0x200000cc   Data           4  tasks.o(.data)
+    xTickCount                               0x200000d0   Data           4  tasks.o(.data)
+    uxTopReadyPriority                       0x200000d4   Data           4  tasks.o(.data)
+    xSchedulerRunning                        0x200000d8   Data           4  tasks.o(.data)
+    xPendedTicks                             0x200000dc   Data           4  tasks.o(.data)
+    xYieldPending                            0x200000e0   Data           4  tasks.o(.data)
+    xNumOfOverflows                          0x200000e4   Data           4  tasks.o(.data)
+    uxTaskNumber                             0x200000e8   Data           4  tasks.o(.data)
+    xNextTaskUnblockTime                     0x200000ec   Data           4  tasks.o(.data)
+    xIdleTaskHandle                          0x200000f0   Data           4  tasks.o(.data)
+    uxSchedulerSuspended                     0x200000f4   Data           4  tasks.o(.data)
+    .data                                    0x200000f8   Section       20  timers.o(.data)
+    pxCurrentTimerList                       0x200000f8   Data           4  timers.o(.data)
+    pxOverflowTimerList                      0x200000fc   Data           4  timers.o(.data)
+    xTimerQueue                              0x20000100   Data           4  timers.o(.data)
+    xTimerTaskHandle                         0x20000104   Data           4  timers.o(.data)
+    xLastTime                                0x20000108   Data           4  timers.o(.data)
+    .data                                    0x2000010c   Section        4  stdout.o(.data)
+    .data                                    0x20000110   Section        4  mvars.o(.data)
+    .bss                                     0x20000114   Section      102  usart1.o(.bss)
+    .bss                                     0x2000017a   Section       20  app.o(.bss)
+    .bss                                     0x2000018e   Section       29  gizwits_product.o(.bss)
+    .bss                                     0x200001ac   Section      604  gizwits_protocol.o(.bss)
+    rbBuf                                    0x20000390   Data         120  gizwits_protocol.o(.bss)
+    .bss                                     0x20000408   Section    17408  heap_4.o(.bss)
+    ucHeap                                   0x20000408   Data       17408  heap_4.o(.bss)
+    .bss                                     0x20004808   Section       80  queue.o(.bss)
+    .bss                                     0x20004858   Section      200  tasks.o(.bss)
+    pxReadyTasksLists                        0x20004858   Data         100  tasks.o(.bss)
+    xDelayedTaskList1                        0x200048bc   Data          20  tasks.o(.bss)
+    xDelayedTaskList2                        0x200048d0   Data          20  tasks.o(.bss)
+    xPendingReadyList                        0x200048e4   Data          20  tasks.o(.bss)
+    xTasksWaitingTermination                 0x200048f8   Data          20  tasks.o(.bss)
+    xSuspendedTaskList                       0x2000490c   Data          20  tasks.o(.bss)
+    .bss                                     0x20004920   Section       40  timers.o(.bss)
+    xActiveTimerList1                        0x20004920   Data          20  timers.o(.bss)
+    xActiveTimerList2                        0x20004934   Data          20  timers.o(.bss)
     STACK                                    0x20004948   Section     1024  startup_stm32f10x_md.o(STACK)
 
     Global Symbols
@@ -2670,15 +2670,16 @@ Image Symbol Table
     remote_data                              0x20000054   Data           4  remote.o(.data)
     remote_key                               0x20000058   Data           1  remote.o(.data)
     time_flag                                0x20000070   Data           1  gizwits_product.o(.data)
-    pxCurrentTCB                             0x200000b8   Data           4  tasks.o(.data)
-    __stdout                                 0x20000108   Data           4  stdout.o(.data)
-    __microlib_freelist                      0x2000010c   Data           4  mvars.o(.data)
-    u1                                       0x20000110   Data         102  usart1.o(.bss)
-    str                                      0x20000176   Data          20  app.o(.bss)
-    currentDataPoint                         0x2000018a   Data          29  gizwits_product.o(.bss)
-    gizwitsProtocol                          0x200001a8   Data         468  gizwits_protocol.o(.bss)
-    pRb                                      0x2000037c   Data          16  gizwits_protocol.o(.bss)
-    xQueueRegistry                           0x20004804   Data          80  queue.o(.bss)
+    wifiConnectionStatus                     0x20000078   Data           1  gizwits_product.o(.data)
+    pxCurrentTCB                             0x200000bc   Data           4  tasks.o(.data)
+    __stdout                                 0x2000010c   Data           4  stdout.o(.data)
+    __microlib_freelist                      0x20000110   Data           4  mvars.o(.data)
+    u1                                       0x20000114   Data         102  usart1.o(.bss)
+    str                                      0x2000017a   Data          20  app.o(.bss)
+    currentDataPoint                         0x2000018e   Data          29  gizwits_product.o(.bss)
+    gizwitsProtocol                          0x200001ac   Data         468  gizwits_protocol.o(.bss)
+    pRb                                      0x20000380   Data          16  gizwits_protocol.o(.bss)
+    xQueueRegistry                           0x20004808   Data          80  queue.o(.bss)
     __initial_sp                             0x20004d48   Data           0  startup_stm32f10x_md.o(STACK)
 
 
@@ -2689,7 +2690,7 @@ Memory Map of the image
 
   Image Entry point : 0x080000ed
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000b534, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000b538, Max: 0x00010000, ABSOLUTE)
 
     Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000b424, Max: 0x00010000, ABSOLUTE)
 
@@ -2992,24 +2993,24 @@ Memory Map of the image
     0x20000059   0x0800b47d   0x00000001   Data   RW          695    .data               wifi.o
     0x2000005a   0x0800b47e   0x00000014   Data   RW         2319    .data               stm32f10x_rcc.o
     0x2000006e   0x0800b492   0x00000002   PAD
-    0x20000070   0x0800b494   0x00000008   Data   RW         3699    .data               gizwits_product.o
-    0x20000078   0x0800b49c   0x00000010   Data   RW         3807    .data               gizwits_protocol.o
-    0x20000088   0x0800b4ac   0x00000020   Data   RW         4149    .data               heap_4.o
-    0x200000a8   0x0800b4cc   0x00000010   Data   RW         4218    .data               port.o
-    0x200000b8   0x0800b4dc   0x0000003c   Data   RW         4716    .data               tasks.o
-    0x200000f4   0x0800b518   0x00000014   Data   RW         5044    .data               timers.o
-    0x20000108   0x0800b52c   0x00000004   Data   RW         5497    .data               mc_w.l(stdout.o)
-    0x2000010c   0x0800b530   0x00000004   Data   RW         5502    .data               mc_w.l(mvars.o)
-    0x20000110        -       0x00000066   Zero   RW          324    .bss                usart1.o
-    0x20000176        -       0x00000014   Zero   RW          397    .bss                app.o
-    0x2000018a        -       0x0000001d   Zero   RW         3698    .bss                gizwits_product.o
-    0x200001a7   0x0800b534   0x00000001   PAD
-    0x200001a8        -       0x0000025c   Zero   RW         3806    .bss                gizwits_protocol.o
-    0x20000404        -       0x00004400   Zero   RW         4148    .bss                heap_4.o
-    0x20004804        -       0x00000050   Zero   RW         4462    .bss                queue.o
-    0x20004854        -       0x000000c8   Zero   RW         4715    .bss                tasks.o
-    0x2000491c        -       0x00000028   Zero   RW         5043    .bss                timers.o
-    0x20004944   0x0800b534   0x00000004   PAD
+    0x20000070   0x0800b494   0x00000009   Data   RW         3699    .data               gizwits_product.o
+    0x20000079   0x0800b49d   0x00000003   PAD
+    0x2000007c   0x0800b4a0   0x00000010   Data   RW         3807    .data               gizwits_protocol.o
+    0x2000008c   0x0800b4b0   0x00000020   Data   RW         4149    .data               heap_4.o
+    0x200000ac   0x0800b4d0   0x00000010   Data   RW         4218    .data               port.o
+    0x200000bc   0x0800b4e0   0x0000003c   Data   RW         4716    .data               tasks.o
+    0x200000f8   0x0800b51c   0x00000014   Data   RW         5044    .data               timers.o
+    0x2000010c   0x0800b530   0x00000004   Data   RW         5497    .data               mc_w.l(stdout.o)
+    0x20000110   0x0800b534   0x00000004   Data   RW         5502    .data               mc_w.l(mvars.o)
+    0x20000114        -       0x00000066   Zero   RW          324    .bss                usart1.o
+    0x2000017a        -       0x00000014   Zero   RW          397    .bss                app.o
+    0x2000018e        -       0x0000001d   Zero   RW         3698    .bss                gizwits_product.o
+    0x200001ab   0x0800b538   0x00000001   PAD
+    0x200001ac        -       0x0000025c   Zero   RW         3806    .bss                gizwits_protocol.o
+    0x20000408        -       0x00004400   Zero   RW         4148    .bss                heap_4.o
+    0x20004808        -       0x00000050   Zero   RW         4462    .bss                queue.o
+    0x20004858        -       0x000000c8   Zero   RW         4715    .bss                tasks.o
+    0x20004920        -       0x00000028   Zero   RW         5043    .bss                timers.o
     0x20004948        -       0x00000400   Zero   RW           17    STACK               startup_stm32f10x_md.o
 
 
@@ -3020,46 +3021,46 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-      5252        656       8352         61         20       7571   app.o
-        90          0          0          0          0       3260   common.o
+      5252        656       8352         61         20       7691   app.o
+        90          0          0          0          0       3320   common.o
          0          0          0          0          0       4564   core_cm3.o
-       480          0          0          0          0       5419   datapointtools.o
-       180          0          0          0          0       1098   delay.o
-       332         28          0          8          0       1438   dht11.o
-         0          0          0          0          0      10916   event_groups.o
-      1074        208          0          8         29      12620   gizwits_product.o
-      8338       2490          0         16        604      20215   gizwits_protocol.o
-       540         74          0         32      17408       5959   heap_4.o
-       252         22          0          1          0       1051   key.o
-        88         10          0          0          0        479   led.o
-       148          0          0          0          0       2998   list.o
-       140         30          0          1          0     238668   main.o
-       276         24          0          0          0       1128   motor.o
-      1118         38       2166          0          0       8571   oled.o
-       784         74          0         16          0      15925   port.o
-      1630         22          0          0         80      16338   queue.o
-        48          6          0          0          0        465   relay.o
-       524         34          0         13          0       1933   remote.o
-       268         12          0          0          0       1661   rgb.o
-       438          0          0          0          0       4284   ringbuffer.o
-        36          8        236          0       1024        760   startup_stm32f10x_md.o
-       768         14          0          0          0       2211   step_motor.o
-       466          6          0          0          0       5071   stm32f10x_gpio.o
-       276         32          0         20          0       4390   stm32f10x_rcc.o
-      1516        180          0          0          0      15763   stm32f10x_tim.o
-       472          6          0          0          0       6747   stm32f10x_usart.o
-       328         28          0          0          0      45265   system_stm32f10x.o
-      2578        424          0         60        200      31162   tasks.o
-       276         22          0          0          0       1381   tim1.o
-        16          4          0          0          0        414   tim4.o
-      1190        112          0         20         40      12314   timers.o
-       484         36          0          0        102      17626   usart1.o
-       556        110          0          1          0       2404   wifi.o
+       480          0          0          0          0       5515   datapointtools.o
+       180          0          0          0          0       1122   delay.o
+       332         28          0          8          0       1474   dht11.o
+         0          0          0          0          0      10952   event_groups.o
+      1074        208          0          9         29      12793   gizwits_product.o
+      8338       2490          0         16        604      20563   gizwits_protocol.o
+       540         74          0         32      17408       6043   heap_4.o
+       252         22          0          1          0       1075   key.o
+        88         10          0          0          0        491   led.o
+       148          0          0          0          0       3070   list.o
+       140         30          0          1          0     238800   main.o
+       276         24          0          0          0       1152   motor.o
+      1118         38       2166          0          0       8751   oled.o
+       784         74          0         16          0      16093   port.o
+      1630         22          0          0         80      16578   queue.o
+        48          6          0          0          0        477   relay.o
+       524         34          0         13          0       1969   remote.o
+       268         12          0          0          0       1697   rgb.o
+       438          0          0          0          0       4380   ringbuffer.o
+        36          8        236          0       1024        772   startup_stm32f10x_md.o
+       768         14          0          0          0       2247   step_motor.o
+       466          6          0          0          0       5155   stm32f10x_gpio.o
+       276         32          0         20          0       4450   stm32f10x_rcc.o
+      1516        180          0          0          0      16075   stm32f10x_tim.o
+       472          6          0          0          0       6855   stm32f10x_usart.o
+       328         28          0          0          0      45361   system_stm32f10x.o
+      2578        424          0         60        200      31558   tasks.o
+       276         22          0          0          0       1405   tim1.o
+        16          4          0          0          0        426   tim4.o
+      1190        112          0         20         40      12506   timers.o
+       484         36          0          0        102      17698   usart1.o
+       556        110          0          1          0       2452   wifi.o
 
     ----------------------------------------------------------------------
-     30992       4710      10788        264      19512     512069   Object Totals
+     30992       4710      10788        268      19508     515530   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        30          0          2          7          5          0   (incl. Padding)
+        30          0          2         10          1          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -3123,15 +3124,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     35328       4826      10788        272      19512     502481   Grand Totals
-     35328       4826      10788        272      19512     502481   ELF Image Totals
-     35328       4826      10788        272          0          0   ROM Totals
+     35328       4826      10788        276      19508     505942   Grand Totals
+     35328       4826      10788        276      19508     505942   ELF Image Totals
+     35328       4826      10788        276          0          0   ROM Totals
 
 ==============================================================================
 
     Total RO  Size (Code + RO Data)                46116 (  45.04kB)
     Total RW  Size (RW Data + ZI Data)             19784 (  19.32kB)
-    Total ROM Size (Code + RO Data + RW Data)      46388 (  45.30kB)
+    Total ROM Size (Code + RO Data + RW Data)      46392 (  45.30kB)
 
 ==============================================================================
 

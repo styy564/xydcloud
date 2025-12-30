@@ -11,23 +11,30 @@
 *               Gizwits Smart Cloud for Smart Products
 *               Links | Value Added | Open | Neutral | Safety | Own | Free | Ecology
 *               www.gizwits.com
-*               styyy
+*
 ***********************************************************/
 #include <stdio.h>
 #include <string.h>
 #include "gizwits_product.h"
-#include "main.h"
-#include "usart1.h"
+#include "led.h"
+#include "relay.h"
+#include "motor.h"
+#include "rgb.h"
+#include "step_motor.h"
+#include "dht11.h"
 
+// 外部变量声明
+extern u8 step_flag;
+extern u8 motor_speed;
+extern RGB rgb;
+extern u8 oled_ref;
+extern float dht_temp;
+extern float dht_humi;
 
-u8 time_flag = 0;//0没连接上服务器，不获取时间  1
 static uint32_t timerMsCount;
 
 /** Current datapoint */
 dataPoint_t currentDataPoint;
-
-/** WiFi connection status: 0-未连接, 1-已连接 */
-uint8_t wifiConnectionStatus = 0;
 
 /**@} */
 /**@name Gizwits User Interface
@@ -71,144 +78,98 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
     {
         switch(info->event[i])
         {
-        case EVENT_LED1:
-            currentDataPoint.valueLED1 = dataPointPtr->valueLED1;
-            //GIZWITS_LOG("Evt: EVENT_LED1 %d \n", currentDataPoint.valueLED1);
-            if(0x01 == currentDataPoint.valueLED1)
+        case EVENT_relay:
+            currentDataPoint.valuerelay = dataPointPtr->valuerelay;
+            GIZWITS_LOG("Evt: EVENT_relay %d \n", currentDataPoint.valuerelay);
+            if(0x01 == currentDataPoint.valuerelay)
             {
-            //user handle
-							LED1_ON;
+                RELAY_ON;
             }
             else
             {
-							LED1_OFF;
-            }
-            break;
-        case EVENT_LED2:
-            currentDataPoint.valueLED2 = dataPointPtr->valueLED2;
-            //GIZWITS_LOG("Evt: EVENT_LED2 %d \n", currentDataPoint.valueLED2);
-            if(0x01 == currentDataPoint.valueLED2)
-            {
-            //user handle
-							LED2_ON;
-            }
-            else
-            {
-            //user handle
-							LED2_OFF;
-            }
-            break;
-        case EVENT_LED3:
-            currentDataPoint.valueLED3 = dataPointPtr->valueLED3;
-            //GIZWITS_LOG("Evt: EVENT_LED3 %d \n", currentDataPoint.valueLED3);
-            if(0x01 == currentDataPoint.valueLED3)
-            {
-            //user handle
-							LED3_ON;
-            }
-            else
-            {
-            //user handle  
-							LED3_OFF;
+                RELAY_OFF;    
             }
             break;
         case EVENT_step:
             currentDataPoint.valuestep = dataPointPtr->valuestep;
-            //GIZWITS_LOG("Evt: EVENT_step %d \n", currentDataPoint.valuestep);
+            GIZWITS_LOG("Evt: EVENT_step %d \n", currentDataPoint.valuestep);
             if(0x01 == currentDataPoint.valuestep)
             {
-            //user handle
-		  				step_flag = 1;
-							if(page_flag == 6)  oled_ref = 1;
-							else  Step_Motor_Control(1,1,50);
+                step_flag = 1;
+                oled_ref = 1;
+                Step_Soft_Control(5,1,4);
             }
             else
             {
-            //user handle
-							step_flag = 0;
-							if(page_flag == 6)  oled_ref = 1;
-							else Step_Motor_Control(1,2,50);
+                step_flag = 0;
+                oled_ref = 1;
+                Step_Soft_Control(5,2,4);    
             }
             break;
-        case EVENT_relay:
-            currentDataPoint.valuerelay = dataPointPtr->valuerelay;
-            //GIZWITS_LOG("Evt: EVENT_relay %d \n", currentDataPoint.valuerelay);
-            if(0x01 == currentDataPoint.valuerelay)
+        case EVENT_led1:
+            currentDataPoint.valueled1 = dataPointPtr->valueled1;
+            GIZWITS_LOG("Evt: EVENT_led1 %d \n", currentDataPoint.valueled1);
+            if(0x01 == currentDataPoint.valueled1)
             {
-            //user handle
-							RELAY_ON;
+                LED1_ON;
             }
             else
             {
-            //user handle   
-							RELAY_OFF;
+                LED1_OFF;    
+            }
+            break;
+        case EVENT_led2:
+            currentDataPoint.valueled2 = dataPointPtr->valueled2;
+            GIZWITS_LOG("Evt: EVENT_led2 %d \n", currentDataPoint.valueled2);
+            if(0x01 == currentDataPoint.valueled2)
+            {
+                LED2_ON;
+            }
+            else
+            {
+                LED2_OFF;    
+            }
+            break;
+        case EVENT_led3:
+            currentDataPoint.valueled3 = dataPointPtr->valueled3;
+            GIZWITS_LOG("Evt: EVENT_led3 %d \n", currentDataPoint.valueled3);
+            if(0x01 == currentDataPoint.valueled3)
+            {
+                LED3_ON;
+            }
+            else
+            {
+                LED3_OFF;    
             }
             break;
 
+
+        case EVENT_r:
+            currentDataPoint.valuer = dataPointPtr->valuer;
+            GIZWITS_LOG("Evt:EVENT_r %d\n",currentDataPoint.valuer);
+            rgb.r = currentDataPoint.valuer;
+            RGB_SendData(rgb.r, rgb.g, rgb.b);
+            oled_ref = 1;
+            break;
+        case EVENT_g:
+            currentDataPoint.valueg = dataPointPtr->valueg;
+            GIZWITS_LOG("Evt:EVENT_g %d\n",currentDataPoint.valueg);
+            rgb.g = currentDataPoint.valueg;
+            RGB_SendData(rgb.r, rgb.g, rgb.b);
+            oled_ref = 1;
+            break;
+        case EVENT_b:
+            currentDataPoint.valueb = dataPointPtr->valueb;
+            GIZWITS_LOG("Evt:EVENT_b %d\n",currentDataPoint.valueb);
+            rgb.b = currentDataPoint.valueb;
+            RGB_SendData(rgb.r, rgb.g, rgb.b);
+            oled_ref = 1;
+            break;
         case EVENT_motor:
             currentDataPoint.valuemotor = dataPointPtr->valuemotor;
-            //GIZWITS_LOG("Evt: EVENT_motor %d\n", currentDataPoint.valuemotor);
-            switch(currentDataPoint.valuemotor)
-            {
-            case motor_VALUE0:
-                //user handle
-							  motor_speed = 0;
-								if(page_flag != 4) Morot_Up(0);
-                break;
-            case motor_VALUE1:
-                //user handle
-								motor_speed = 1;
-								if(page_flag != 4) Morot_Up(200);
-                break;
-            case motor_VALUE2:
-                //user handle
-								motor_speed = 2;
-								if(page_flag != 4) Morot_Up(400);
-                break;
-            case motor_VALUE3:
-                //user handle
-								motor_speed = 3;
-								if(page_flag != 4) Morot_Up(600);
-                break;
-            case motor_VALUE4:
-                //user handle
-								motor_speed = 4;
-								if(page_flag != 4) Morot_Up(800);
-                break;
-            case motor_VALUE5:
-                //user handle
-								motor_speed = 5;
-								if(page_flag != 4) Morot_Up(1000);
-                break;
-            default:
-                break;
-            }
-						ui_flag = 0;
-            break;
-
-        case EVENT_R:
-            currentDataPoint.valueR = dataPointPtr->valueR;
-            //GIZWITS_LOG("Evt:EVENT_R %d\n",currentDataPoint.valueR);
-            //user handle
-			oled_ref = 1;
-			rgb.r = currentDataPoint.valueR;
-			RGB_SendData((uint8_t)currentDataPoint.valueR,(uint8_t)currentDataPoint.valueG,(uint8_t)currentDataPoint.valueB);
-            break;
-        case EVENT_G:
-            currentDataPoint.valueG = dataPointPtr->valueG;
-           // GIZWITS_LOG("Evt:EVENT_G %d\n",currentDataPoint.valueG);
-            //user handle
-			oled_ref = 1;
-			rgb.g = currentDataPoint.valueG;
-			RGB_SendData((uint8_t)currentDataPoint.valueR,(uint8_t)currentDataPoint.valueG,(uint8_t)currentDataPoint.valueB);
-            break;
-        case EVENT_B:
-            currentDataPoint.valueB = dataPointPtr->valueB;
-            //GIZWITS_LOG("Evt:EVENT_B %d\n",currentDataPoint.valueB);
-            //user handle
-			oled_ref = 1;
-			rgb.b = currentDataPoint.valueB;
-			RGB_SendData((uint8_t)currentDataPoint.valueR,(uint8_t)currentDataPoint.valueG,(uint8_t)currentDataPoint.valueB);
+            GIZWITS_LOG("Evt:EVENT_motor %d\n",currentDataPoint.valuemotor);
+            motor_speed = currentDataPoint.valuemotor;
+            Morot_Up(200*currentDataPoint.valuemotor);
             break;
 
 
@@ -218,14 +179,14 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             break;
         case WIFI_STATION:
             break;
-        case WIFI_CON_ROUTER://连接服务器成功
-						time_flag = 1;
+        case WIFI_CON_ROUTER:
+ 
             break;
         case WIFI_DISCON_ROUTER:
  
             break;
-        case WIFI_CON_M2M://联网成功
-						time_flag = 1;
+        case WIFI_CON_M2M:
+ 
             break;
         case WIFI_DISCON_M2M:
             break;
@@ -237,17 +198,8 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             //user handle , Fetch data from [data] , size is [len]
             break;
         case WIFI_NTP:
-           // GIZWITS_LOG("WIFI_NTP : [%d-%d-%d %02d:%02d:%02d][%d] \n",ptime->year,ptime->month,ptime->day,ptime->hour,ptime->minute,ptime->second,ptime->ntp);
-						
-						if(page_flag==1)
-						{
-							u8 tim_buff[30] = {0};
-							sprintf((char*)tim_buff,"%02d-%02d-%02d",ptime->year,ptime->month,ptime->day);
-							OLED_DisplayStr(24,2,tim_buff);
-							sprintf((char*)tim_buff,"%02d:%02d:%02d",ptime->hour,ptime->minute,ptime->second);
-							OLED_DisplayStr(32,4,tim_buff);
-						}
-						break;
+            GIZWITS_LOG("WIFI_NTP : [%d-%d-%d %02d:%02d:%02d][%d] \n",ptime->year,ptime->month,ptime->day,ptime->hour,ptime->minute,ptime->second,ptime->ntp);
+            break;
         case MODULE_INFO:
             GIZWITS_LOG("MODULE INFO ...\n");
 #if MODULE_TYPE
@@ -278,12 +230,12 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
 */
 void userHandle(void)
 {
-    //读取温湿度传感器数据
-    DHT11_Read();
+    // 更新RGB数据
+    currentDataPoint.valuer = rgb.r;
+    currentDataPoint.valueg = rgb.g;
+    currentDataPoint.valueb = rgb.b;
     
-    //将传感器数据赋值给当前数据点，用于上报云端
-    currentDataPoint.valuetemp = dht_temp;//温度数据
-    currentDataPoint.valuehumi = dht_humi;//湿度数据
+    // 温湿度数据已在Timer2_CallBack中更新，此处无需重复更新
     
 }
 
@@ -300,19 +252,17 @@ void userInit(void)
     memset((uint8_t*)&currentDataPoint, 0, sizeof(dataPoint_t));
     
     /** Warning !!! DataPoint Variables Init , Must Within The Data Range **/ 
-    /*
-    currentDataPoint.valueLED1 = ;
-    currentDataPoint.valueLED2 = ;
-    currentDataPoint.valueLED3 = ;
-    currentDataPoint.valuestep = ;
-    currentDataPoint.valuerelay = ;
-    currentDataPoint.valuemotor = ;
-    currentDataPoint.valueR = ;
-    currentDataPoint.valueG = ;
-    currentDataPoint.valueB = ;
-    currentDataPoint.valuetemp = ;
-    currentDataPoint.valuehumi = ;
-    */
+    currentDataPoint.valuerelay = 0; // 继电器初始关闭
+    currentDataPoint.valuestep = 0;  // 窗帘初始关闭
+    currentDataPoint.valueled1 = 0;  // LED1初始关闭
+    currentDataPoint.valueled2 = 0;  // LED2初始关闭
+    currentDataPoint.valueled3 = 0;  // LED3初始关闭
+    currentDataPoint.valuer = 0;     // RGB R初始值
+    currentDataPoint.valueg = 0;     // RGB G初始值
+    currentDataPoint.valueb = 0;     // RGB B初始值
+    currentDataPoint.valuemotor = 0; // 电机初始速度为0
+    currentDataPoint.valuetemp = 25.0; // 温度初始值
+    currentDataPoint.valuehumi = 50.0; // 湿度初始值
 
 }
 
@@ -353,7 +303,8 @@ uint32_t gizGetTimerCount(void)
 */
 void mcuRestart(void)
 {
-
+    __set_FAULTMASK(1);
+    NVIC_SystemReset();
 }
 /**@} */
 
@@ -419,22 +370,18 @@ int32_t uartWrite(uint8_t *buf, uint32_t len)
 
     for(i=0; i<len; i++)
     {
-        //USART_SendData(UART, buf[i]);//STM32 test demo
-        //Serial port to achieve the function, the buf[i] sent to the module
+        // 发送数据到USART2（WiFi模块连接的串口）
+        while(USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
         USART_SendData(USART2, buf[i]);
-				while(USART_GetFlagStatus(USART2,USART_FLAG_TXE)==RESET);
-			  
-				if(i >=2 && buf[i] == 0xFF)
+        
+        // 0xFF转义处理
+        if(buf[i] == 0xFF)
         {
-          //Serial port to achieve the function, the 0x55 sent to the module
-          //USART_SendData(UART, 0x55);//STM32 test demo
-					USART_SendData(USART2,0x55);
-					while (USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
+            while(USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
+            USART_SendData(USART2, 0x55);
         }
     }
 
-
-    
     return len;
 }
 

@@ -21,7 +21,6 @@ extern "C" {
 #endif
 #include <stdint.h>
 #include "gizwits_protocol.h"
-#include "stm32f10x.h"
 
 /**
 * MCU software version
@@ -40,7 +39,7 @@ extern "C" {
 
 
 
-extern u8 time_flag;
+
 extern dataPoint_t currentDataPoint;
 
 void userInit(void);
@@ -48,7 +47,6 @@ void userHandle(void);
 void mcuRestart(void);
 int32_t uartWrite(uint8_t *buf, uint32_t len);
 int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *data, uint32_t len);
-void gizTimerMs(void);
 
 #ifdef __cplusplus
 }

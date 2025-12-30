@@ -8,6 +8,8 @@
 .\objects\gizwits_product.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdlib.h
 .\objects\gizwits_product.o: .\Utils\common.h
 .\objects\gizwits_product.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\ctype.h
+.\objects\gizwits_product.o: .\HARDWARE\inc\led.h
+.\objects\gizwits_product.o: .\USER\inc\main.h
 .\objects\gizwits_product.o: .\CMSIS\stm32f10x.h
 .\objects\gizwits_product.o: .\CMSIS\core_cm3.h
 .\objects\gizwits_product.o: .\CMSIS\system_stm32f10x.h
@@ -36,7 +38,6 @@
 .\objects\gizwits_product.o: .\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h
 .\objects\gizwits_product.o: .\STM32F10x_StdPeriph_Driver\inc\stm32f10x_wwdg.h
 .\objects\gizwits_product.o: .\STM32F10x_StdPeriph_Driver\inc\misc.h
-.\objects\gizwits_product.o: .\USER\inc\main.h
 .\objects\gizwits_product.o: .\FreeRTOS\include\FreeRTOS.h
 .\objects\gizwits_product.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stddef.h
 .\objects\gizwits_product.o: .\FreeRTOS\port\FreeRTOSConfig.h

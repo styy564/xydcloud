@@ -106,19 +106,19 @@ void Task1(void *ptr)
 				{
 					if(rgb.r >= 50) rgb.r -= 50;
 					else rgb.r = 0;
-					currentDataPoint.valueR = rgb.r;
+					currentDataPoint.valuer = rgb.r;
 				}
 				else if(rgb.flag == 2)
 				{
 					if(rgb.g >= 50) rgb.g -= 50;
 					else rgb.g = 0;
-					currentDataPoint.valueG = rgb.g;
+					currentDataPoint.valueg = rgb.g;
 				}
 				else if(rgb.flag == 3)
 				{
 					if(rgb.b >= 50) rgb.b -= 50;
 					else rgb.b = 0;
-					currentDataPoint.valueB = rgb.b;
+					currentDataPoint.valueb = rgb.b;
 				}
 				oled_ref = 1;
 			}
@@ -164,17 +164,17 @@ void Task1(void *ptr)
 				else if(led_flag==1) 		 
 				{
 					LED1_TURN;
-					currentDataPoint.valueLED1 ^= 1;
+					currentDataPoint.valueled1 ^= 1;
 				}
 				else if(led_flag==2) 
 				{
 					LED2_TURN;
-					currentDataPoint.valueLED2 ^= 1;
+					currentDataPoint.valueled2 ^= 1;
 				}
 				else if(led_flag==3) 
 				{
 					LED3_TURN;
-					currentDataPoint.valueLED3 ^= 1;
+					currentDataPoint.valueled3 ^= 1;
 				}
 			}
 
@@ -254,19 +254,19 @@ void Task1(void *ptr)
 				{
 					if(rgb.r + 50 > 255) rgb.r = 250;
 					else rgb.r += 50;
-					currentDataPoint.valueR = rgb.r;
+					currentDataPoint.valuer = rgb.r;
 				}
 				else if(rgb.flag==2)
 				{
 					if(rgb.g + 50 > 255) rgb.g = 250;
 					else rgb.g += 50;
-					currentDataPoint.valueG = rgb.g;
+					currentDataPoint.valueg = rgb.g;
 				}
 				else if(rgb.flag==3)
 				{
 					if(rgb.b + 50 > 255) rgb.b = 250;
 					else rgb.b += 50;
-					currentDataPoint.valueB = rgb.b;
+					currentDataPoint.valueb = rgb.b;
 				}
 				oled_ref = 1;
 			}
@@ -336,6 +336,7 @@ void Task3(void *ptr)
 {
 	ptr = ptr;
 	printf("进入3\r\n");
+	OLED_Clear(0);
 	while(1)
 	{
 		if(page_flag == 0)//**********************    主页面     ***************************

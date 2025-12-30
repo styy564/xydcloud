@@ -7,9 +7,9 @@
 * @version      V03030000
 * @copyright    Gizwits
 * 
-* @note         æœºæ™ºäº‘.åªä¸ºæ™ºèƒ½ç¡¬ä»¶è€Œç”Ÿ
+* @note         »úÖÇÔÆ.Ö»ÎªÖÇÄÜÓ²¼ş¶øÉú
 *               Gizwits Smart Cloud  for Smart Products
-*               é“¾æ¥|å¢å€¼Öµ|å¼€æ”¾|ä¸­ç«‹|å®‰å…¨|è‡ªæœ‰|è‡ªç”±|ç”Ÿæ€
+*               Á´½Ó|ÔöÖµ?|¿ª·Å|ÖĞÁ¢|°²È«|×ÔÓĞ|×ÔÓÉ|ÉúÌ¬
 *               www.gizwits.com
 *
 ***********************************************************/
@@ -40,8 +40,10 @@ extern "C" {
 
 
 
+
 extern u8 time_flag;
 extern dataPoint_t currentDataPoint;
+extern protocolTime_t ntp_time;
 
 void userInit(void);
 void userHandle(void);
@@ -49,6 +51,7 @@ void mcuRestart(void);
 int32_t uartWrite(uint8_t *buf, uint32_t len);
 int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *data, uint32_t len);
 void gizTimerMs(void);
+uint8_t getCurrentWifiStatus(void);
 
 #ifdef __cplusplus
 }

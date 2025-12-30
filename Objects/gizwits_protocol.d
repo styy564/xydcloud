@@ -1,5 +1,5 @@
 .\objects\gizwits_protocol.o: Gizwits\gizwits_protocol.c
-.\objects\gizwits_protocol.o: .\Utils\ringbuffer.h
+.\objects\gizwits_protocol.o: .\Utils\ringBuffer.h
 .\objects\gizwits_protocol.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdint.h
 .\objects\gizwits_protocol.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdio.h
 .\objects\gizwits_protocol.o: C:\Keil_v5\ARM\ARM_Compiler_5.06u7\Bin\..\include\stdlib.h

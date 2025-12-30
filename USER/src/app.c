@@ -1,5 +1,6 @@
 #include "app.h"
 #include "default.h"
+#include "gizwits_product.h" // Include for NTP time access
 
 //任务句柄
 TaskHandle_t  start_task_handle;
@@ -36,7 +37,7 @@ u8 relay_flag = 0;//0继电器关闭  1打开
 u8 menu = 4;//主页面要显示哪个图标
 u8 remote_clear = 0;
 
-u8 str[20];
+u8 str[30]; // Increased size to handle formatted time strings
 /*****************************Task1******************************/
 #define  TASK1_SIZE  64
 #define	 TASK1_PRI	 2
@@ -64,9 +65,9 @@ void Task1(void *ptr)
 					//清除两个图标之间空隙
 					OLED_DisplayPic(10+10*i,2,8,4,(u8*)other[1]);
 					OLED_DisplayPic(50+10*i,2,8,4,(u8*)other[1]);
-					OLED_DisplayPic(90+10*i,2,8,4,(u8*)other[1]);	
+					OLED_DisplayPic(90+10*i,2,8,4,(u8*)other[1]);
 					if(i==3) OLED_DisplayPic(0,2,8,4,(u8*)other[1]);
-					delay_ms(50);
+					vTaskDelay(50);
 				}	
 				menu -= 5;
 				if(menu>=200) menu = 34;
@@ -106,19 +107,19 @@ void Task1(void *ptr)
 				{
 					if(rgb.r >= 50) rgb.r -= 50;
 					else rgb.r = 0;
-					currentDataPoint.valueR = rgb.r;
+					currentDataPoint.valuer = rgb.r;
 				}
 				else if(rgb.flag == 2)
 				{
 					if(rgb.g >= 50) rgb.g -= 50;
 					else rgb.g = 0;
-					currentDataPoint.valueG = rgb.g;
+					currentDataPoint.valueg = rgb.g;
 				}
 				else if(rgb.flag == 3)
 				{
 					if(rgb.b >= 50) rgb.b -= 50;
 					else rgb.b = 0;
-					currentDataPoint.valueB = rgb.b;
+					currentDataPoint.valueb = rgb.b;
 				}
 				oled_ref = 1;
 			}
@@ -164,17 +165,17 @@ void Task1(void *ptr)
 				else if(led_flag==1) 		 
 				{
 					LED1_TURN;
-					currentDataPoint.valueLED1 ^= 1;
+					currentDataPoint.valueled1 ^= 1;
 				}
 				else if(led_flag==2) 
 				{
 					LED2_TURN;
-					currentDataPoint.valueLED2 ^= 1;
+					currentDataPoint.valueled2 ^= 1;
 				}
 				else if(led_flag==3) 
 				{
 					LED3_TURN;
-					currentDataPoint.valueLED3 ^= 1;
+					currentDataPoint.valueled3 ^= 1;
 				}
 			}
 
@@ -215,7 +216,7 @@ void Task1(void *ptr)
 					OLED_DisplayPic(70-10*i,2,8,4,(u8*)other[1]);
 					OLED_DisplayPic(110-10*i,2,8,4,(u8*)other[1]);
 					if(i==3) OLED_DisplayPic(120,2,8,4,(u8*)other[1]);
-					delay_ms(50);
+					vTaskDelay(50);
 				}	
 				menu += 5;
 				if(menu>=35) menu = 4;
@@ -254,19 +255,19 @@ void Task1(void *ptr)
 				{
 					if(rgb.r + 50 > 255) rgb.r = 250;
 					else rgb.r += 50;
-					currentDataPoint.valueR = rgb.r;
+					currentDataPoint.valuer = rgb.r;
 				}
 				else if(rgb.flag==2)
 				{
 					if(rgb.g + 50 > 255) rgb.g = 250;
 					else rgb.g += 50;
-					currentDataPoint.valueG = rgb.g;
+					currentDataPoint.valueg = rgb.g;
 				}
 				else if(rgb.flag==3)
 				{
 					if(rgb.b + 50 > 255) rgb.b = 250;
 					else rgb.b += 50;
-					currentDataPoint.valueB = rgb.b;
+					currentDataPoint.valueb = rgb.b;
 				}
 				oled_ref = 1;
 			}
@@ -363,15 +364,37 @@ void Task3(void *ptr)
 			}
 		}
 		else if(page_flag == 1)//*****************    时间页面     *************************
-		{
-			if(ui_flag == 0)//发生了页面切换
 			{
-				ui_flag = 1;
-				OLED_Clear(0);
-				OLED_DisplayStr(40,0,(u8*)"时间");
-				OLED_DisplayPic(0,0,16,2,(u8*)other[2]);//退出图标
-				OLED_DisplayPic(20,0,16,2,(u8*)other[0]);//箭头，指向选中目标
-			}
+				if(ui_flag == 0)//发生了页面切换
+				{
+					ui_flag = 1;
+					OLED_Clear(0);
+					OLED_DisplayStr(40,0,(u8*)"时间");
+					OLED_DisplayPic(0,0,16,2,(u8*)other[2]);//退出图标
+					OLED_DisplayPic(20,0,16,2,(u8*)other[0]);//箭头，指向选中目标
+				}
+				// Display NTP time - simplified version
+				// Directly format and display time with basic validity check
+				// Check if time data is valid
+				if(ntp_time.year >= 2020 && ntp_time.year <= 2100 && 
+				   ntp_time.month >= 1 && ntp_time.month <= 12 && 
+				   ntp_time.day >= 1 && ntp_time.day <= 31) {
+					// Format date with trailing spaces to overwrite any old characters
+					sprintf((char*)str, "%04d-%02d-%02d      ", 
+						ntp_time.year, ntp_time.month, ntp_time.day);
+					OLED_DisplayStr(24, 2, str);
+					// Format time with trailing spaces to overwrite any old characters
+					sprintf((char*)str, "%02d:%02d:%02d        ", 
+						ntp_time.hour, ntp_time.minute, ntp_time.second);
+					OLED_DisplayStr(32, 4, str);
+				} else {
+					// Display default time if data is invalid
+					OLED_DisplayStr(24, 2, (u8*)"2023-01-01      ");
+					OLED_DisplayStr(32, 4, (u8*)"00:00:00        ");
+				}
+				
+				// Short delay to prevent blocking
+				vTaskDelay(1000);
 		}
 		else if(page_flag == 2)//*******************  温湿度    ****************************
 		{
@@ -379,6 +402,7 @@ void Task3(void *ptr)
 			{
 				ui_flag = 1;
 				OLED_Clear(0);
+				delay_ms(10); // 增加延迟确保清屏完成
 				OLED_DisplayStr(44,0,(u8*)"DHT11");
 				OLED_DisplayPic(0,0,16,2,(u8*)other[2]);//退出图标
 				OLED_DisplayPic(20,0,16,2,(u8*)other[0]);//箭头，指向选中目标
@@ -395,6 +419,7 @@ void Task3(void *ptr)
 			{
 				ui_flag = 1;
 				OLED_Clear(0);
+				delay_ms(10); // 增加延迟确保清屏完成
 				OLED_DisplayStr(52,0,(u8*)"LED");
 				OLED_DisplayStr(10,2,(u8*)"LED1");
 				OLED_DisplayStr(10,4,(u8*)"LED2");
@@ -423,12 +448,11 @@ void Task3(void *ptr)
 			}
 			Morot_Up(200*motor_speed);//电机启动
 			if(motor_speed != 0)//风扇动图
-			{
-				for(u8 h=0;h<5;h++)
 				{
-					OLED_DisplayPic(16,3,32,4,(u8*)gif32x32[h]);
+					static u8 fan_frame = 0;
+					OLED_DisplayPic(16,3,32,4,(u8*)gif32x32[fan_frame]);
+					fan_frame = (fan_frame + 1) % 5;
 					vTaskDelay(20);
-				}
 			}
 			else OLED_DisplayPic(16,3,32,4,(u8*)gif32x32[0]);
 		}
@@ -557,14 +581,13 @@ void Task3(void *ptr)
 			//开关字样
 			OLED_DisplayPic(20,3,32,4,(u8*)relay[RELAY_OUT]);
 			//充电动图
-			if(RELAY_OUT)
-			{
-				for(u8 h=0;h<6;h++)
+				if(RELAY_OUT)
 				{
-					OLED_DisplayPic(70,4,48,2,(u8*)motor[h]);
+					static u8 charge_frame = 0;
+					OLED_DisplayPic(70,4,48,2,(u8*)motor[charge_frame]);
+					charge_frame = (charge_frame + 1) % 6;
 					vTaskDelay(200);
-					if((page_flag != 7) || !RELAY_OUT) break;//****回到首页直接结束****
-				}
+					if((page_flag != 7) || !RELAY_OUT) charge_frame = 0;//****回到首页直接重置****
 			}
 			else OLED_DisplayPic(70,4,48,2,(u8*)motor[0]);
 		}

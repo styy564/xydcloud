@@ -38,12 +38,12 @@ extern "C" {
 /**@name Product Key  
 * @{
 */
-#define PRODUCT_KEY "0e1e75d36d2c4bc79daadfc884c5e623"
+#define PRODUCT_KEY "2f576ea3e7204fda99be59227426b8c8"
 /**@} */
 /**@name Product Secret  
 * @{
 */
-#define PRODUCT_SECRET "db0c4f3d888f41e48248d489b080ae96"
+#define PRODUCT_SECRET "f23b16544d7c4c18bb6be8de205c9f42"
 
 /**@name Device status data reporting interval
 * @{
@@ -69,7 +69,7 @@ extern "C" {
 
 
 
-#define MAX_PACKAGE_LEN    (sizeof(devStatus_t)+sizeof(dataPointFlags_t)+50)///< Data buffer maximum length
+#define MAX_PACKAGE_LEN    (sizeof(devStatus_t)+sizeof(attrFlags_t)+50)                 ///< Data buffer maximum length
 #define RB_MAX_LEN          (MAX_PACKAGE_LEN*2)     ///< Maximum length of ring buffer
 
 #ifdef DATA_CONFIG_ENABLE
@@ -79,62 +79,56 @@ extern "C" {
 /**@name Data point related definition
 * @{
 */
-#define LED1_LEN                           1
-#define LED2_LEN                           1
-#define LED3_LEN                           1
-#define step_LEN                           1
+#define relay_BYTEOFFSET                    0
+#define relay_BITOFFSET                     0
 #define relay_LEN                           1
-#define motor_LEN                           3
+#define step_BYTEOFFSET                    0
+#define step_BITOFFSET                     1
+#define step_LEN                           1
+#define led1_BYTEOFFSET                    0
+#define led1_BITOFFSET                     2
+#define led1_LEN                           1
+#define led2_BYTEOFFSET                    0
+#define led2_BITOFFSET                     3
+#define led2_LEN                           1
+#define led3_BYTEOFFSET                    0
+#define led3_BITOFFSET                     4
+#define led3_LEN                           1
 
-#define R_RATIO                         1
-#define R_ADDITION                      0
-#define R_MIN                           0
-#define R_MAX                           255
-#define R_LEN                           1
-#define G_RATIO                         1
-#define G_ADDITION                      0
-#define G_MIN                           0
-#define G_MAX                           255
-#define G_LEN                           1
-#define B_RATIO                         1
-#define B_ADDITION                      0
-#define B_MIN                           0
-#define B_MAX                           255
-#define B_LEN                           1
+#define r_RATIO                         1
+#define r_ADDITION                      0
+#define r_MIN                           0
+#define r_MAX                           250
+#define g_RATIO                         1
+#define g_ADDITION                      0
+#define g_MIN                           0
+#define g_MAX                           250
+#define b_RATIO                         1
+#define b_ADDITION                      0
+#define b_MIN                           0
+#define b_MAX                           250
+#define motor_RATIO                         1
+#define motor_ADDITION                      0
+#define motor_MIN                           0
+#define motor_MAX                           5
 #define temp_RATIO                         0.1
 #define temp_ADDITION                      0
 #define temp_MIN                           0
 #define temp_MAX                           600
-#define temp_LEN                           2
 #define humi_RATIO                         0.1
 #define humi_ADDITION                      5
 #define humi_MIN                           0
 #define humi_MAX                           900
-#define humi_LEN                           2
-
 /**@} */
-
-
-/** Writable data points Boolean and enumerated variables occupy byte size */
-#define COUNT_BIT 1
-
 
 /** Writable data points Boolean and enumerated variables occupy byte size */
 #define COUNT_W_BIT 1
 
 
-#define DATAPOINT_FLAG_LEN sizeof(dataPointFlags_t)		 ///< All data points FLAG occupies the maximum number of bytes
 
-typedef enum
-{
-    motor_VALUE0 = 0,//关闭
-    motor_VALUE1 = 1,//一档
-    motor_VALUE2 = 2,//二档
-    motor_VALUE3 = 3,//三档
-    motor_VALUE4 = 4,//四档
-    motor_VALUE5 = 5,//五档
-    motor_VALUE_MAX,
-} motor_ENUM_T;
+
+
+
 
 /** Event enumeration */
 typedef enum
@@ -156,29 +150,28 @@ typedef enum
     WIFI_NTP,                                         ///< Network time event
     MODULE_INFO,                                      ///< Module information event
     TRANSPARENT_DATA,                                 ///< Transparency events
-    EVENT_LED1,
-    EVENT_LED2,
-    EVENT_LED3,
-    EVENT_step,
     EVENT_relay,
+    EVENT_step,
+    EVENT_led1,
+    EVENT_led2,
+    EVENT_led3,
+    EVENT_r,
+    EVENT_g,
+    EVENT_b,
     EVENT_motor,
-    EVENT_R,
-    EVENT_G,
-    EVENT_B,
     EVENT_TYPE_MAX                                    ///< Enumerate the number of members to calculate (user accidentally deleted)
 } EVENT_TYPE_T;
 
-
-/** P0 command command code*/
+/** P0 Command code */
 typedef enum
 {
-    ACTION_CONTROL_DEVICE       = 0x11,             ///< Write data points, that is, control devices or issue commands to devices.APP => Device
-    ACTION_READ_DEV_STATUS      = 0x12,             ///< Read data points.APP => Device
-    ACTION_READ_DEV_STATUS_ACK  = 0x13,             ///< Device replies to data point content.Device => APP
-    ACTION_REPORT_DEV_STATUS    = 0x14,             ///< The device regularly (every 10 minutes) or proactively reports the current status when the status changes.Device => APP
+    ACTION_CONTROL_DEVICE       = 0x01,             ///< Write data points, that is, control devices or issue commands to devices.APP => Device
+    ACTION_READ_DEV_STATUS      = 0x02,             ///< Read data points.APP => Device
+    ACTION_READ_DEV_STATUS_ACK  = 0x03,             ///< Device replies to data point content.Device => APP
+    ACTION_REPORT_DEV_STATUS    = 0x04,             ///< The device regularly (every 10 minutes) or proactively reports the current status when the status changes.Device => APP
     ACTION_W2D_TRANSPARENT_DATA = 0x05,             ///< App transparently transmits business instructions to device.APP => Device
     ACTION_D2W_TRANSPARENT_DATA = 0x06,             ///< Device transmits business instructions to App transparently.Device => APP
-} actionType_t;
+} actionType_t;   
 
 /** Protocol network time structure */
 typedef struct
@@ -325,43 +318,61 @@ typedef enum
 
 /** User Area Device State Structure */
 typedef struct {
-    bool valueLED1;
-    bool valueLED2;
-    bool valueLED3;
-    bool valuestep;
     bool valuerelay;
+    bool valuestep;
+    bool valueled1;
+    bool valueled2;
+    bool valueled3;
+    uint32_t valuer;
+    uint32_t valueg;
+    uint32_t valueb;
     uint32_t valuemotor;
-    uint32_t valueR;
-    uint32_t valueG;
-    uint32_t valueB;
     float valuetemp;
     float valuehumi;
 } dataPoint_t;
 
-/** User Area Device State Structure */
-typedef struct {
-    uint8_t flagLED1:1;
-    uint8_t flagLED2:1;
-    uint8_t flagLED3:1;
-    uint8_t flagstep:1;
-    uint8_t flagrelay:1;
-    uint8_t flagmotor:1;
-    uint8_t flagR:1;
-    uint8_t flagG:1;
-    uint8_t flagB:1;
-    uint8_t flagtemp:1;
-    uint8_t flaghumi:1;
-} dataPointFlags_t;
 
-/** Current status of WiFi module */
+/** Corresponding to the protocol "4.10 WiFi module control device" in the flag " attr_flags" */ 
 typedef struct {
-    uint8_t bitFeildBuf[COUNT_BIT];
-    uint8_t valueR;
-    uint8_t valueG;
-    uint8_t valueB;
+    uint8_t flagrelay:1;
+    uint8_t flagstep:1;
+    uint8_t flagled1:1;
+    uint8_t flagled2:1;
+    uint8_t flagled3:1;
+    uint8_t flagr:1;
+    uint8_t flagg:1;
+    uint8_t flagb:1;
+    uint8_t flagmotor:1;
+} attrFlags_t;
+
+
+/** Corresponding protocol "4.10 WiFi module control device" in the data value "attr_vals" */
+
+typedef struct {
+    uint8_t wBitBuf[COUNT_W_BIT];
+    uint8_t valuer;
+    uint8_t valueg;
+    uint8_t valueb;
+    uint8_t valuemotor;
+} attrVals_t;
+
+/** The flag "attr_flags (1B)" + data value "P0 protocol area" in the corresponding protocol "4.10 WiFi module control device"attr_vals(6B)" */ 
+typedef struct {
+    attrFlags_t attrFlags;
+    attrVals_t  attrVals;
+}gizwitsIssued_t;
+
+/** Corresponding protocol "4.9 Device MCU to the WiFi module to actively report the current state" in the device status "dev_status(11B)" */ 
+
+typedef struct {
+    uint8_t wBitBuf[COUNT_W_BIT];
+    uint8_t valuer;
+    uint8_t valueg;
+    uint8_t valueb;
+    uint8_t valuemotor;
     uint16_t valuetemp;
     uint16_t valuehumi;
-} devStatus_t;
+} devStatus_t; 
 
 
                 
@@ -549,17 +560,15 @@ typedef struct {
     uint32_t                sendTime;               ///< resend time
 } protocolWaitAck_t;
                                                                                 
+/** 4.8 WiFi read device datapoint value , device ack use this struct */
+typedef struct
+{
+    protocolHead_t          head;                   ///< Protocol head
+    uint8_t                 action;                 ///< p0 action
+    gizwitsReport_t         reportData;             ///< p0 data
+    uint8_t                 sum;                    ///< Checksum 
+} protocolReport_t;
 
-
-typedef struct {                           
-    dataPointFlags_t  devDatapointFlag;             ///< Datapoint Flag , All datapoints 
-    devStatus_t devStatus;                          ///< All datapoints data
-}gizwitsElongateP0Form_t;  
-
-typedef struct {                           
-    uint8_t action;                                 ///< P0 action 
-    uint8_t gizdata[sizeof(gizwitsElongateP0Form_t)];  ///< Max buffer ,  Can hold all datapoints value 
-}gizwitsP0Max_t;        
 #pragma pack()
 
 /** Protocol main and very important struct */
@@ -579,10 +588,7 @@ typedef struct
     eventInfo_t NTPEvent;                           ///< NTP events
     eventInfo_t moduleInfoEvent;                    ///< Module Info events
 
-    dataPointFlags_t  waitReportDatapointFlag;      ///< Store the data points to be reported flag
-    uint8_t reportData[sizeof(gizwitsElongateP0Form_t)];    ///< Reporting actual data , Max , Can hold all datapoints value
-    uint32_t reportDataLen;                         ///< Reporting actual data length
-
+	gizwitsReport_t reportData;                     ///< The protocol reports data for standard product
     dataPoint_t gizCurrentDataPoint;                ///< Current device datapoints status
     dataPoint_t gizLastDataPoint;                   ///< Last device datapoints status
     moduleStatusInfo_t wifiStatusData;              ///< WIFI signal intensity
@@ -592,8 +598,9 @@ typedef struct
 #else  
     moduleInfo_t  wifiModuleNews;                   ///< WIFI module Info
 #endif
-    
-}gizwitsProtocol_t;
+	
+        
+}gizwitsProtocol_t; 
 
 
 

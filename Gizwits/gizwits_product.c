@@ -216,6 +216,7 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             {
                 RELAY_OFF;    
             }
+            ui_flag = 0; // 设置ui_flag为0，强制页面刷新
             break;
 //        case EVENT_step:
 //            currentDataPoint.valuestep = dataPointPtr->valuestep;
@@ -240,6 +241,7 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             {
                 LED1_OFF;    
             }
+            ui_flag = 0; // 设置ui_flag为0，强制页面刷新
             break;
         case EVENT_led2:
             currentDataPoint.valueled2 = dataPointPtr->valueled2;
@@ -252,6 +254,7 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             {
                 LED2_OFF;    
             }
+            ui_flag = 0; // 设置ui_flag为0，强制页面刷新
             break;
         case EVENT_led3:
             currentDataPoint.valueled3 = dataPointPtr->valueled3;
@@ -264,23 +267,30 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
             {
                 LED3_OFF;    
             }
+            ui_flag = 0; // 设置ui_flag为0，强制页面刷新
             break;
 
 
         case EVENT_r:
             currentDataPoint.valuer = dataPointPtr->valuer;
             GIZWITS_LOG("Evt:EVENT_r %d\n",currentDataPoint.valuer);
+            rgb.r = currentDataPoint.valuer;
             RGB_SendData(currentDataPoint.valuer, currentDataPoint.valueg, currentDataPoint.valueb);
+            ui_flag = 0; // 设置ui_flag为0，强制页面刷新
             break;
         case EVENT_g:
             currentDataPoint.valueg = dataPointPtr->valueg;
             GIZWITS_LOG("Evt:EVENT_g %d\n",currentDataPoint.valueg);
+            rgb.g = currentDataPoint.valueg;
             RGB_SendData(currentDataPoint.valuer, currentDataPoint.valueg, currentDataPoint.valueb);
+            ui_flag = 0; // 设置ui_flag为0，强制页面刷新
             break;
         case EVENT_b:
             currentDataPoint.valueb = dataPointPtr->valueb;
             GIZWITS_LOG("Evt:EVENT_b %d\n",currentDataPoint.valueb);
+            rgb.b = currentDataPoint.valueb;
             RGB_SendData(currentDataPoint.valuer, currentDataPoint.valueg, currentDataPoint.valueb);
+            ui_flag = 0; // 设置ui_flag为0，强制页面刷新
             break;
         case EVENT_motor:
             currentDataPoint.valuemotor = dataPointPtr->valuemotor;
